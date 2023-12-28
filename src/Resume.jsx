@@ -13,11 +13,25 @@ export function Resume() {
   const [linkedin, setLinkedin] = useState('in/pvictorls/');
   const [github, setGithub] = useState('github.com/pvdevs');
 
+  function collapseToggle(e, toCollapse) {
+    const target = document.getElementsByClassName(toCollapse);
+    console.log(target);
+    target.classList.toggle('hidden');
+  }
+
   return (
     <div className="container">
       <div className="forms-container">
         <section className="personal-details-section">
-          <h1>Personal Details</h1>
+          <div className="title-colapse">
+            <h1>Personal Details</h1>
+            <button
+              className="collapse-btn"
+              onClick={(e) => collapseToggle(e, 'personal-details')}
+            >
+              ^^
+            </button>
+          </div>
 
           <form className="personal-details">
             <div>

@@ -17,6 +17,15 @@
   border-radius: 8px;
 }
 
+.hidden {
+  display: none;
+}
+
+.title-colapse {
+  display: flex;
+  justify-content: space-between;
+}
+
 .personal-details {
   display: flex;
   flex-direction: column;
