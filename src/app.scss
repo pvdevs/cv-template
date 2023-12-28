@@ -1,0 +1,44 @@
+$primary-color: #231f20;
+$secondary-color: #1f2124;
+$terciary-color: #a6aaab;
+
+* {
+  font-family: inter, sans-serif;
+  padding: 0;
+  margin: 0;
+
+  color: $secondary-color;
+
+  input {
+    height: 1.5rem;
+    border: 1px solid $terciary-color;
+    border-radius: 4px;
+    padding: 4px 8px;
+  }
+
+  textarea {
+    resize: vertical;
+    padding: 4px 8px;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  h3 {
+    font-size: 12px;
+  }
+
+  h4 {
+    font-size: 9px;
+  }
+
+  p {
+    font-size: 9px;
+    line-height: 1.5;
+  }
+}
