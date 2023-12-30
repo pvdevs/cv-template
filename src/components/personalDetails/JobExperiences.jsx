@@ -28,6 +28,13 @@ export default function JobExperiences() {
   function cancelButton(e, id) {
     e.preventDefault();
 
+    turnEditOff(e, id);
+    //
+  }
+
+  function turnEditOff(e, id) {
+    e.preventDefault();
+
     setJobs(
       jobs.map((job) => {
         if (job.id === id) {
@@ -35,7 +42,18 @@ export default function JobExperiences() {
         }
       })
     );
-    //
+  }
+
+  function turnEditOn(e, id) {
+    e.preventDefault();
+
+    setJobs(
+      jobs.map((job) => {
+        if (job.id === id) {
+          return { ...job, isEditing: true };
+        }
+      })
+    );
   }
 
   console.log(jobs);
@@ -153,9 +171,15 @@ export default function JobExperiences() {
             </form>
           );
         } else {
-          <div className="form-collapsed">
-            <h1>{job.companyName}</h1>
-          </div>;
+          return (
+            <div
+              className="form-collapsed"
+              key={job.id}
+              onClick={(e) => turnEditOn(e, job.id)}
+            >
+              <h2>{job.companyName}</h2>
+            </div>
+          );
         }
       })}
     </section>
