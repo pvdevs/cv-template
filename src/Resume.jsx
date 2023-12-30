@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './resume.scss';
 import PersonalDetails from './components/personalDetails/PersonalDetails';
+import JobExperiences from './components/personalDetails/JobExperiences';
 
 export function Resume() {
   // Form as Object
@@ -22,6 +23,8 @@ export function Resume() {
           personalInfos={personalInfos}
           setPersonalInfos={setPersonalInfos}
         />
+
+        <JobExperiences />
       </div>
 
       <div className="resume">

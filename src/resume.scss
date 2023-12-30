@@ -6,7 +6,13 @@
   padding: 40px;
 }
 
-.personal-details-section {
+.forms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-container {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -24,19 +30,6 @@
 .title-colapse {
   display: flex;
   justify-content: space-between;
-}
-
-.personal-details {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    max-width: 300px;
-  }
 }
 
 .resume {

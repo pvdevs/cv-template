@@ -4,12 +4,12 @@ import { useState } from 'react';
 export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
   const [showForm, setShowForm] = useState(true);
 
-  function toggleShowForm(e) {
+  function toggleShowForm() {
     setShowForm(!showForm);
   }
 
   return (
-    <section className="personal-details-section">
+    <section className="form-container">
       <div className="title-colapse">
         <h1>Personal Details</h1>
         <button className="collapse-btn" onClick={toggleShowForm}>
@@ -18,8 +18,8 @@ export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
       </div>
 
       {showForm && (
-        <form className="personal-details">
-          <div>
+        <form className="form">
+          <div className="form-group">
             <label htmlFor="input-fullname">Full name</label>
             <input
               type="text"
@@ -33,7 +33,7 @@ export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
               }
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="input-current-position">Current position</label>
             <input
               type="text"
@@ -48,7 +48,7 @@ export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label htmlFor="about">About</label>
             <textarea
               name=""
@@ -64,7 +64,7 @@ export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
               }
             ></textarea>
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="input-email">Email</label>
             <input
               type="text"
@@ -78,7 +78,7 @@ export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
               }
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="input-phone-number">Phone number</label>
             <input
               type="text"
@@ -93,7 +93,7 @@ export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label htmlFor="input-linkedin">Linkedin</label>
             <input
               type="text"
@@ -107,7 +107,7 @@ export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
               }
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="input-github">Github</label>
             <input
               type="text"
