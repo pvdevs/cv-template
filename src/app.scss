@@ -47,6 +47,12 @@ $terciary-color: #a6aaab;
   }
 }
 
+.new-job-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;

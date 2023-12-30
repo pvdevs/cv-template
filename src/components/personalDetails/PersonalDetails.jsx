@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 export default function PersonalDetails({ personalInfos, setPersonalInfos }) {
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   function toggleShowForm() {
     setShowForm(!showForm);

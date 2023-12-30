@@ -5,8 +5,8 @@ export default function JobExperiences() {
   const [infos, setInfos] = useState({
     companyName: 'Mentorise',
     position: 'Fullstack Developer',
-    startDate: '2022/12/2',
-    endDate: '2023/12/1',
+    startDate: '12/01/2021',
+    endDate: '12/01/2023',
     jobDescription:
       'Olá, meu nome é Marcelo Chaves, sou desenvolvedor fullstack com experiência na construção de sites e aplicações que possam ser úteis como desenvolvedor, enquanto durante meu tempo como desenvolvedor, pude ganhar experiência coletivamente com uma equipe, entregando sprints semanais e melhorando as plataformas em que trabalhei.',
   });
@@ -23,17 +23,27 @@ export default function JobExperiences() {
 
   const [isAddingJob, setIsAddingJob] = useState(false);
 
-  function addNewJob() {
+  function addNewJob(e) {
+    e.preventDefault();
+    setJobs([...jobs, { ...infos, id: uuidv4(), isEditing: false }]);
+
+    removeNewJobForm();
+
+    console.log(jobs);
+  }
+
+  function addNewJobForm() {
     setIsAddingJob(true);
   }
 
-  function stopAddingJob(e) {
-    e.preventDefault();
+  function removeNewJobForm(e) {
+    //e && e.preventDefault(); <- Test with this syntax later
+    if (e) e.preventDefault;
 
     setIsAddingJob(false);
   }
 
-  function saveButton(e) {
+  function saveButton(e, id) {
     //
   }
 
@@ -53,6 +63,8 @@ export default function JobExperiences() {
       jobs.map((job) => {
         if (job.id === id) {
           return { ...job, isEditing: false };
+        } else {
+          return job;
         }
       })
     );
@@ -66,10 +78,14 @@ export default function JobExperiences() {
     setJobs(
       jobs.map((job) => {
         if (job.id === id) {
+          console.log(job.companyName);
           return { ...job, isEditing: true };
+        } else {
+          return { ...job, isEditing: false };
         }
       })
     );
+    console.log(jobs);
   }
 
   console.log(jobs);
@@ -91,6 +107,7 @@ export default function JobExperiences() {
           ^^
         </button>
       </div>
+      {console.log(jobs)}
       {jobs.map((job) => {
         if (job.isEditing) {
           return (
@@ -177,7 +194,12 @@ export default function JobExperiences() {
                 >
                   Cancel
                 </button>
-                <button className="save-btn">Save</button>
+                <button
+                  className="save-btn"
+                  onClick={(e) => saveButton(e, job.id)}
+                >
+                  Save
+                </button>
               </div>
             </form>
           );
@@ -195,9 +217,12 @@ export default function JobExperiences() {
       })}
       {!userIsEditing && (
         <section className="new-job-section">
-          <button className="add-new-job" onClick={addNewJob}>
-            Add new job
-          </button>
+          {!isAddingJob && (
+            <button className="add-new-job" onClick={addNewJobForm}>
+              Add new job
+            </button>
+          )}
+
           {isAddingJob && (
             <form className="form">
               <div className="form-group">
@@ -276,10 +301,12 @@ export default function JobExperiences() {
               </div>
 
               <div className="form-buttons">
-                <button className="cancel-btn" onClick={stopAddingJob}>
+                <button className="cancel-btn" onClick={removeNewJobForm}>
                   Cancel
                 </button>
-                <button className="save-btn">Save</button>
+                <button className="save-btn" onClick={addNewJob}>
+                  Save
+                </button>
               </div>
             </form>
           )}
