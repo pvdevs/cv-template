@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { info } from 'sass';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function JobExperiences() {
@@ -37,14 +38,24 @@ export default function JobExperiences() {
   }
 
   function removeNewJobForm(e) {
-    //e && e.preventDefault(); <- Test with this syntax later
-    if (e) e.preventDefault;
+    e && e.preventDefault();
 
     setIsAddingJob(false);
   }
 
   function saveButton(e, id) {
-    //
+    e && e.preventDefault();
+
+    setJobs(
+      jobs.map((job) => {
+        if (job.id === id) {
+          return { ...job, ...infos, isEditing: false };
+        } else {
+          return job;
+        }
+      })
+    );
+    setUserIsEditing(false);
   }
 
   function cancelButton(e, id) {
