@@ -1,133 +1,54 @@
 import { useState } from 'react';
 import './resume.scss';
+import PersonalDetails from './components/personalDetails/PersonalDetails';
 
 export function Resume() {
-  const sillyAboutMessage =
-    'Olá, meu nome é Paulo Victor, sou desenvolvedor fullstack com experiência na construção de sites e aplicações que possam ser úteis como desenvolvedor, enquanto durante meu tempo como desenvolvedor, pude ganhar experiência coletivamente com uma equipe, entregando sprints semanais e melhorando as plataformas em que trabalhei.';
-  // Form
-  const [fullName, setFullName] = useState('Paulo Victor');
-  const [currentPosition, setCurrentPosition] = useState('Fullstack Developer');
-  const [about, setAbout] = useState(sillyAboutMessage);
-  const [email, setEmail] = useState('paulovictor.devs@gmail.com');
-  const [phoneNumber, setPhoneNumber] = useState('+55 91 998084647');
-  const [linkedin, setLinkedin] = useState('in/pvictorls/');
-  const [github, setGithub] = useState('github.com/pvdevs');
-
-  function collapseToggle(e, toCollapse) {
-    const target = document.getElementsByClassName(toCollapse);
-    console.log(target);
-    target.classList.toggle('hidden');
-  }
+  // Form as Object
+  const [personalInfos, setPersonalInfos] = useState({
+    fullName: 'Paulo Victor',
+    currentPosition: 'Fullstack Developer',
+    about:
+      'Olá, meu nome é Marcelo Chaves, sou desenvolvedor fullstack com experiência na construção de sites e aplicações que possam ser úteis como desenvolvedor, enquanto durante meu tempo como desenvolvedor, pude ganhar experiência coletivamente com uma equipe, entregando sprints semanais e melhorando as plataformas em que trabalhei.',
+    email: 'paulovictor.devs@gmail.com',
+    phoneNumber: '+55 91 99808-4647',
+    linkedin: 'in/pvictorls/',
+    github: 'github.com/pvdevs',
+  });
 
   return (
     <div className="container">
       <div className="forms-container">
-        <section className="personal-details-section">
-          <div className="title-colapse">
-            <h1>Personal Details</h1>
-            <button
-              className="collapse-btn"
-              onClick={(e) => collapseToggle(e, 'personal-details')}
-            >
-              ^^
-            </button>
-          </div>
-
-          <form className="personal-details">
-            <div>
-              <label htmlFor="input-fullname">Full name</label>
-              <input
-                type="text"
-                id="input-fullname"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="input-current-position">Current position</label>
-              <input
-                type="text"
-                id="input-current-position"
-                value={currentPosition}
-                onChange={(e) => setCurrentPosition(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="about">About</label>
-              <textarea
-                name=""
-                id="about"
-                cols="30"
-                rows="5"
-                value={about}
-                onChange={(e) => setAbout(e.target.value)}
-              ></textarea>
-            </div>
-            <div>
-              <label htmlFor="input-email">Email</label>
-              <input
-                type="text"
-                id="input-email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="input-phone-number">Phone number</label>
-              <input
-                type="text"
-                id="input-phone-number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="input-linkedin">Linkedin</label>
-              <input
-                type="text"
-                id="input-linkedin"
-                value={linkedin}
-                onChange={(e) => setLinkedin(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="input-github">Github</label>
-              <input
-                type="text"
-                id="input-github"
-                value={github}
-                onChange={(e) => setGithub(e.target.value)}
-              />
-            </div>
-          </form>
-        </section>
+        <PersonalDetails
+          personalInfos={personalInfos}
+          setPersonalInfos={setPersonalInfos}
+        />
       </div>
 
       <div className="resume">
-        {/* Introduction Section */}
+        {/* Personal Information Section */}
 
         <section className="introduction">
           <div className="name-n-position">
-            <h2 className="fullname">{fullName}</h2>
-            <h3 className="current-position">{currentPosition}</h3>
+            <h2 className="fullname">{personalInfos.fullName}</h2>
+            <h3 className="current-position">
+              {personalInfos.currentPosition}
+            </h3>
           </div>
 
           <div className="bio-n-infos">
-            <p className="about">{about}</p>
+            <p className="about">{personalInfos.about}</p>
             <ul>
               <li className="email">
-                <b>Email:</b> {email}
+                <b>Email:</b> {personalInfos.email}
               </li>
               <li className="telephone">
-                <b>Phone number:</b> {phoneNumber}
+                <b>Phone number:</b> {personalInfos.phoneNumber}
               </li>
               <li className="linkedin">
-                <b>Linkedin:</b> {linkedin}
+                <b>Linkedin:</b> {personalInfos.linkedin}
               </li>
               <li className="github">
-                <b>Github:</b> {github}
+                <b>Github:</b> {personalInfos.github}
               </li>
             </ul>
           </div>
