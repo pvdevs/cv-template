@@ -36,8 +36,18 @@ export default function JobExperiences() {
     setJobs([...jobs, { ...infos, id: uuidv4(), isEditing: false }]);
 
     removeNewJobForm();
-
+    resetInfos();
     console.log(jobs);
+  }
+
+  function updateInfosThroughJob(job) {
+    setInfos({
+      companyName: job.companyName,
+      position: job.position,
+      startDate: job.startDate,
+      endDate: job.endDate,
+      jobDescription: job.jobDescription,
+    });
   }
 
   function addNewJobForm() {
@@ -65,14 +75,14 @@ export default function JobExperiences() {
       })
     );
     setUserIsEditing(false);
-    //resetInfos();
+    resetInfos();
   }
 
   function cancelButton(e, id) {
     e.preventDefault();
 
     turnEditOff(e, id);
-    //resetInfos();
+    resetInfos();
   }
 
   function turnEditOff(e, id) {
@@ -243,7 +253,10 @@ export default function JobExperiences() {
             <div
               className="form-collapsed"
               key={job.id}
-              onClick={(e) => turnEditOn(e, job.id)}
+              onClick={(e) => {
+                updateInfosThroughJob(job);
+                turnEditOn(e, job.id);
+              }}
             >
               <h2>{job.companyName}</h2>
             </div>
