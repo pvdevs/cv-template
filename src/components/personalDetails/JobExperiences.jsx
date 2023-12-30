@@ -21,6 +21,18 @@ export default function JobExperiences() {
 
   console.log(jobs);
 
+  const [isAddingJob, setIsAddingJob] = useState(false);
+
+  function addNewJob() {
+    setIsAddingJob(true);
+  }
+
+  function stopAddingJob(e) {
+    e.preventDefault();
+
+    setIsAddingJob(false);
+  }
+
   function saveButton(e) {
     //
   }
@@ -33,6 +45,8 @@ export default function JobExperiences() {
   }
 
   function turnEditOff(e, id) {
+    setUserIsEditing(false);
+
     e.preventDefault();
 
     setJobs(
@@ -45,6 +59,8 @@ export default function JobExperiences() {
   }
 
   function turnEditOn(e, id) {
+    setUserIsEditing(true);
+
     e.preventDefault();
 
     setJobs(
@@ -61,11 +77,7 @@ export default function JobExperiences() {
   // Description
 
   const [showSection, setShowSection] = useState(true);
-  const [showForm, setShowForm] = useState(true);
-
-  function toggleShowForm() {
-    setShowForm(!showForm);
-  }
+  const [userIsEditing, setUserIsEditing] = useState(true);
 
   function toggleShowSection() {
     setShowSection(!showSection);
@@ -79,7 +91,6 @@ export default function JobExperiences() {
           ^^
         </button>
       </div>
-
       {jobs.map((job) => {
         if (job.isEditing) {
           return (
@@ -182,93 +193,98 @@ export default function JobExperiences() {
           );
         }
       })}
+      {!userIsEditing && (
+        <section className="new-job-section">
+          <button className="add-new-job" onClick={addNewJob}>
+            Add new job
+          </button>
+          {isAddingJob && (
+            <form className="form">
+              <div className="form-group">
+                <label htmlFor="company-name">Company name</label>
+                <input
+                  type="text"
+                  id="company-name"
+                  value={infos.companyName}
+                  onChange={(e) =>
+                    setInfos({
+                      ...infos,
+                      companyName: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="input-position">Position</label>
+                <input
+                  type="text"
+                  id="input-position"
+                  value={infos.position}
+                  onChange={(e) =>
+                    setInfos({
+                      ...infos,
+                      position: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="input-start-date">Start date</label>
+                <input
+                  type="date"
+                  id="input-start-date"
+                  value={infos.startDate}
+                  onChange={(e) =>
+                    setInfos({
+                      ...infos,
+                      startDate: e.target.value,
+                    })
+                  }
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="input-end-date">End date</label>
+                <input
+                  type="date"
+                  id="input-end-date"
+                  value={infos.endDate}
+                  onChange={(e) =>
+                    setInfos({
+                      ...infos,
+                      endDate: e.target.value,
+                    })
+                  }
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="input-job-description">Job description</label>
+                <textarea
+                  name=""
+                  id="input-job-description"
+                  cols="30"
+                  rows="5"
+                  value={infos.jobDescription}
+                  onChange={(e) =>
+                    setInfos({
+                      ...infos,
+                      jobDescription: e.target.value,
+                    })
+                  }
+                ></textarea>
+              </div>
+
+              <div className="form-buttons">
+                <button className="cancel-btn" onClick={stopAddingJob}>
+                  Cancel
+                </button>
+                <button className="save-btn">Save</button>
+              </div>
+            </form>
+          )}
+        </section>
+      )}
     </section>
   );
 }
-
-/*
-
-      {showSection && (
-        <form className="form">
-          <div className="form-group">
-            <label htmlFor="company-name">Company name</label>
-            <input
-              type="text"
-              id="company-name"
-              value={infos.companyName}
-              onChange={(e) =>
-                setInfos({
-                  ...infos,
-                  companyName: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="input-position">Position</label>
-            <input
-              type="text"
-              id="input-position"
-              value={infos.position}
-              onChange={(e) =>
-                setInfos({
-                  ...infos,
-                  position: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="input-start-date">Start date</label>
-            <input
-              type="date"
-              id="input-start-date"
-              value={infos.startDate}
-              onChange={(e) =>
-                setInfos({
-                  ...infos,
-                  startDate: e.target.value,
-                })
-              }
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="input-end-date">End date</label>
-            <input
-              type="date"
-              id="input-end-date"
-              value={infos.endDate}
-              onChange={(e) =>
-                setInfos({
-                  ...infos,
-                  endDate: e.target.value,
-                })
-              }
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="input-job-description">Job description</label>
-            <textarea
-              name=""
-              id="input-job-description"
-              cols="30"
-              rows="5"
-              value={infos.jobDescription}
-              onChange={(e) =>
-                setInfos({
-                  ...infos,
-                  jobDescription: e.target.value,
-                })
-              }
-            ></textarea>
-          </div>
-
-          <div className="form-buttons">
-            <button className="cancel-btn">Cancel</button>
-            <button className="save-btn">Save</button>
-          </div>
-        </form>
-      )}
-      */
