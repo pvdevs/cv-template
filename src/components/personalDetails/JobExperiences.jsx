@@ -1,17 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import FormDynamic from './FormDynamic';
 
-export default function JobExperiences() {
-  const exampleJob = {
-    companyName: 'Mentorise',
-    position: 'Fullstack Developer',
-    startDate: '12/01/2021',
-    endDate: '12/01/2023',
-    jobDescription:
-      'Olá, meu nome é Marcelo Chaves, sou desenvolvedor fullstack com experiência na construção de sites e aplicações que possam ser úteis como desenvolvedor, enquanto durante meu tempo como desenvolvedor, pude ganhar experiência coletivamente com uma equipe, entregando sprints semanais e melhorando as plataformas em que trabalhei.',
-  };
-
+export default function JobExperiences({ jobs, setJobs }) {
   const [infos, setInfos] = useState({
     companyName: undefined,
     position: '',
@@ -19,14 +11,6 @@ export default function JobExperiences() {
     endDate: '',
     jobDescription: '',
   });
-
-  const [jobs, setJobs] = useState([
-    {
-      ...exampleJob,
-      id: uuidv4(),
-      isEditing: false,
-    },
-  ]);
 
   const [isAddingJob, setIsAddingJob] = useState(false);
 

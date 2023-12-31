@@ -98,8 +98,8 @@
   gap: 64px;
 
   .job {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+
     gap: 40px;
     justify-content: space-between;
 
@@ -114,7 +114,7 @@
     }
 
     p {
-      max-width: 80ch;
+      max-width: 40ch;
     }
   }
 }

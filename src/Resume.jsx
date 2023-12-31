@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './resume.scss';
 import PersonalDetails from './components/personalDetails/PersonalDetails';
 import JobExperiences from './components/personalDetails/JobExperiences';
+import JobExperienceSection from './components/personalDetails/JobExperienceSection';
 
 export function Resume() {
   // Form as Object
@@ -16,6 +18,23 @@ export function Resume() {
     github: 'github.com/pvdevs',
   });
 
+  const exampleJob = {
+    companyName: 'Mentorise',
+    position: 'Fullstack Developer',
+    startDate: '12/01/2021',
+    endDate: '12/01/2023',
+    jobDescription:
+      'Olá, meu nome é Marcelo Chaves, sou desenvolvedor fullstack com experiência na construção de sites e aplicações que possam ser úteis como desenvolvedor, enquanto durante meu tempo como desenvolvedor, pude ganhar experiência coletivamente com uma equipe, entregando sprints semanais e melhorando as plataformas em que trabalhei.',
+  };
+
+  const [jobs, setJobs] = useState([
+    {
+      ...exampleJob,
+      id: uuidv4(),
+      isEditing: false,
+    },
+  ]);
+
   return (
     <div className="container">
       <div className="forms-container">
@@ -24,7 +43,7 @@ export function Resume() {
           setPersonalInfos={setPersonalInfos}
         />
 
-        <JobExperiences />
+        <JobExperiences jobs={jobs} setJobs={setJobs} />
       </div>
 
       <div className="resume">
@@ -63,18 +82,11 @@ export function Resume() {
 
         <section className="job-experiences">
           <h3 className="section-title">Experiences</h3>
-          <div className="job">
-            <div className="job-infos">
-              <p className="company-name">Mentorise</p>
-              <p className="job-position">Fullstack Developer</p>
-              <p className="job-period">2022 - Present</p>
-            </div>
-            <p className="job-description">
-              Trabalho para desenvolver e manter a plataforma Mentorise. Meus
-              objetivos são criar melhorias incluindo tarefas simples e até mais
-              complexas para manutenção da plataforma e melhoria da plataforma
-              como um todo.
-            </p>
+
+          <div className="jobs-list">
+            {jobs.map((job) => {
+              return <JobExperienceSection key={job.id} job={job} />;
+            })}
           </div>
         </section>
 

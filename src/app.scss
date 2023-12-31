@@ -68,6 +68,12 @@ $terciary-color: #a6aaab;
   gap: 4px;
 }
 
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .form-collapsed {
   border-top: 1px solid $terciary-color;
   border-bottom: 1px solid $terciary-color;
