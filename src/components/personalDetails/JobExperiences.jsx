@@ -28,9 +28,11 @@ export default function JobExperiences() {
     },
   ]);
 
-  console.log(jobs);
-
   const [isAddingJob, setIsAddingJob] = useState(false);
+
+  const [showSection, setShowSection] = useState(true);
+
+  const [userIsEditing, setUserIsEditing] = useState(false);
 
   function addNewJob(e) {
     e.preventDefault();
@@ -115,9 +117,7 @@ export default function JobExperiences() {
 
   function turnEditOn(e, id) {
     setUserIsEditing(true);
-
     e.preventDefault();
-
     setJobs(
       jobs.map((job) => {
         if (job.id === id) {
@@ -128,15 +128,7 @@ export default function JobExperiences() {
         }
       })
     );
-    console.log(jobs);
   }
-
-  console.log(jobs);
-  // Company, Occupation, Start time - End time.
-  // Description
-
-  const [showSection, setShowSection] = useState(true);
-  const [userIsEditing, setUserIsEditing] = useState(false);
 
   function toggleShowSection() {
     setShowSection(!showSection);
