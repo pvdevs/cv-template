@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export default function FormDynamic({
+export default function FormDynamicEducation({
   infos,
   setInfos,
   id,
@@ -9,30 +9,30 @@ export default function FormDynamic({
   return (
     <form className="form" key={id}>
       <div className="form-group">
-        <label htmlFor="company-name">Company name</label>
+        <label htmlFor="institution">Institution</label>
         <input
           type="text"
-          id="company-name"
-          value={infos.companyName}
+          id="institution"
+          value={infos.institution}
           placeholder="ah fs"
           onChange={(e) =>
             setInfos({
               ...infos,
-              companyName: e.target.value,
+              institution: e.target.value,
             })
           }
         />
       </div>
       <div className="form-group">
-        <label htmlFor="input-position">Position</label>
+        <label htmlFor="input-subject">Subject</label>
         <input
           type="text"
-          id="input-position"
-          value={infos.position}
+          id="input-subject"
+          value={infos.subject}
           onChange={(e) =>
             setInfos({
               ...infos,
-              position: e.target.value,
+              subject: e.target.value,
             })
           }
         />
@@ -71,23 +71,6 @@ export default function FormDynamic({
             })
           }
         />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="input-job-description">Job description</label>
-        <textarea
-          name=""
-          id="input-job-description"
-          cols="30"
-          rows="5"
-          value={infos.jobDescription}
-          onChange={(e) =>
-            setInfos({
-              ...infos,
-              jobDescription: e.target.value,
-            })
-          }
-        ></textarea>
       </div>
 
       <div className="form-buttons">

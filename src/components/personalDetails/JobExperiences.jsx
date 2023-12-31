@@ -11,12 +11,15 @@ export default function JobExperiences({ jobs, setJobs }) {
     endDate: '',
     jobDescription: '',
   });
+  const [showForm, setShowForm] = useState(false);
 
   const [isAddingJob, setIsAddingJob] = useState(false);
 
-  const [showSection, setShowSection] = useState(true);
-
   const [userIsEditing, setUserIsEditing] = useState(false);
+
+  function toggleShowForm() {
+    setShowForm(!showForm);
+  }
 
   function addNewJob(e) {
     e.preventDefault();
@@ -114,63 +117,62 @@ export default function JobExperiences({ jobs, setJobs }) {
     );
   }
 
-  function toggleShowSection() {
-    setShowSection(!showSection);
-  }
-
   return (
     <section className="form-container">
       <div className="title-colapse">
         <h1>Experiences</h1>
-        <button className="collapse-btn" onClick={toggleShowSection}>
+        <button className="collapse-btn" onClick={toggleShowForm}>
           ^^
         </button>
       </div>
-      {console.log(jobs)}
-      {jobs.map((job) => {
-        if (job.isEditing) {
-          return (
-            <FormDynamic
-              key={job.id}
-              id={job.id}
-              infos={infos}
-              setInfos={setInfos}
-              cancelButton={cancelButton}
-              saveButton={saveButton}
-            />
-          );
-        } else {
-          return (
-            <div
-              className="form-collapsed"
-              key={job.id}
-              onClick={(e) => {
-                updateInfosThroughJob(job);
-                turnEditOn(e, job.id);
-              }}
-            >
-              <h2>{job.companyName}</h2>
-            </div>
-          );
-        }
-      })}
-      {!userIsEditing && (
-        <section className="new-job-section">
-          {!isAddingJob && (
-            <button className="add-new-job" onClick={addNewJobForm}>
-              Add new job
-            </button>
-          )}
+      {showForm && (
+        <>
+          {jobs.map((job) => {
+            if (job.isEditing) {
+              return (
+                <FormDynamic
+                  key={job.id}
+                  id={job.id}
+                  infos={infos}
+                  setInfos={setInfos}
+                  cancelButton={cancelButton}
+                  saveButton={saveButton}
+                />
+              );
+            } else {
+              return (
+                <div
+                  className="form-collapsed"
+                  key={job.id}
+                  onClick={(e) => {
+                    updateInfosThroughJob(job);
+                    turnEditOn(e, job.id);
+                  }}
+                >
+                  <h2>{job.companyName}</h2>
+                </div>
+              );
+            }
+          })}
+          {!userIsEditing && (
+            <section className="new-job-section">
+              {!isAddingJob && (
+                <button className="add-new-job" onClick={addNewJobForm}>
+                  Add new job
+                </button>
+              )}
 
-          {isAddingJob && (
-            <FormDynamic
-              infos={infos}
-              setInfos={setInfos}
-              cancelButton={removeNewJobForm}
-              saveButton={addNewJob}
-            />
+              {isAddingJob && (
+                <FormDynamic
+                  infos={infos}
+                  setInfos={setInfos}
+                  cancelButton={removeNewJobForm}
+                  saveButton={addNewJob}
+                />
+              )}
+            </section>
           )}
-        </section>
+        </>
       )}
     </section>
   );

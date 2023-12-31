@@ -4,6 +4,8 @@ import './resume.scss';
 import PersonalDetails from './components/personalDetails/PersonalDetails';
 import JobExperiences from './components/personalDetails/JobExperiences';
 import JobExperienceSection from './components/personalDetails/JobExperienceSection';
+import EducationSection from './components/personalDetails/EducationSection';
+import Education from './components/personalDetails/Education';
 
 export function Resume() {
   // Form as Object
@@ -21,15 +23,30 @@ export function Resume() {
   const exampleJob = {
     companyName: 'Mentorise',
     position: 'Fullstack Developer',
-    startDate: '12/01/2021',
-    endDate: '12/01/2023',
+    startDate: '2021',
+    endDate: '2023',
     jobDescription:
       'Olá, meu nome é Marcelo Chaves, sou desenvolvedor fullstack com experiência na construção de sites e aplicações que possam ser úteis como desenvolvedor, enquanto durante meu tempo como desenvolvedor, pude ganhar experiência coletivamente com uma equipe, entregando sprints semanais e melhorando as plataformas em que trabalhei.',
+  };
+
+  const exampleEducation = {
+    institution: 'CESUPA',
+    subject: 'Computer Science',
+    startDate: '2019',
+    endDate: '2022',
   };
 
   const [jobs, setJobs] = useState([
     {
       ...exampleJob,
+      id: uuidv4(),
+      isEditing: false,
+    },
+  ]);
+
+  const [educationPath, setEducationPath] = useState([
+    {
+      ...exampleEducation,
       id: uuidv4(),
       isEditing: false,
     },
@@ -44,6 +61,11 @@ export function Resume() {
         />
 
         <JobExperiences jobs={jobs} setJobs={setJobs} />
+
+        <Education
+          educationPath={educationPath}
+          setEducationPath={setEducationPath}
+        />
       </div>
 
       <div className="resume">
@@ -93,15 +115,14 @@ export function Resume() {
         <div className="line-separator"></div>
         {/* Education Section*/}
 
-        <section className="education">
+        <section className="education-path">
           <h3 className="section-title">Education</h3>
-
-          <div className="educational-experience">
-            <p className="educational-institution">
-              CESUPA - Centro Universitario do Estado do Para
-            </p>
-            <p className="educational-period">2019-2022</p>
-            <p className="educational-subject">Computer Science</p>
+          <div className="education-list">
+            {educationPath.map((education) => {
+              return (
+                <EducationSection key={education.id} education={education} />
+              );
+            })}
           </div>
         </section>
       </div>

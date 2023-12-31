@@ -93,6 +93,11 @@
   background-color: app.$terciary-color;
 }
 
+.institution {
+  font-weight: 700;
+  color: app.$secondary-color;
+}
+
 .job-experiences {
   display: flex;
   gap: 64px;
@@ -119,9 +124,15 @@
   }
 }
 
-.education {
+.education-path {
   display: flex;
   gap: 64px;
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .educational-institution {
