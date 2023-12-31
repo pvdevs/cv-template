@@ -53,6 +53,15 @@ $terciary-color: #a6aaab;
   gap: 24px;
 }
 
+.add-new-job {
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid $terciary-color;
+  border-radius: 4px;
+  color: $secondary-color;
+  background-color: white;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
